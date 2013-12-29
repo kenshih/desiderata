@@ -57,7 +57,7 @@ auto.A1.prototype.initGrid = function(cfg) {
 		}
 	}
 	G[0][1]=auto.A1.COLOR2;
-	console.log("init once per trial");
+	//console.log("init once per trial");
 }
 auto.A1.prototype.grid = function() { return this.g; }
 auto.A1.prototype.setCoord = function(x, y) {
