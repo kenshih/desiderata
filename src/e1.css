@@ -1,0 +1,38 @@
+/*
+color scheme: Arduino
+#00878F	blue
+#62AEB2	lt blue
+#E47128	red-orange
+#E5AD24	orange-yellow
+#8C7965 brun
+*/
+body {
+	background: #00878F; /* blue */
+	color: #E5AD24; /* orange-yellow */
+	font-family: Arial, Sans-Serif
+}
+#ecoCanvas { 
+	width: 400;
+	height: 400;
+	border: 1; 
+}
+.text {} 
+
+.btn-stop,
+.btn-go {
+	background-color: #00878F; /* blue */
+	color: #E5AD24; /* orange-yellow */
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+	border-radius:6px;
+	border: solid;
+}
+.btn-stop:hover,
+.btn-go:hover {
+	background-color: #8C7965 ; /* brun */
+}
+
+select {
+	background-color: #00878F; /* blue */
+	color: #E5AD24; /* orange-yellow */
+}
