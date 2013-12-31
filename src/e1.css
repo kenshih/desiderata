@@ -9,13 +9,24 @@ color scheme: Arduino
 body {
 	background: #00878F; /* blue */
 	color: #E5AD24; /* orange-yellow */
-	font-family: Arial, Sans-Serif
+	font-family: Arial, Sans-Serif;	
 }
-#eco-canvas { 
-	width: 500;
-	height: 500;
+
+.eco-canvas { 
+	padding-left: 0;
+    padding-right: 0;
+	display: block;
+	margin: 0 auto;		
 }
-.text {} 
+.eco-buttons {
+	display: block;
+	text-align: center;
+}
+
+.text, aside {
+	width: 500px;	
+	margin: 0 auto;
+} 
 
 .btn-stop,
 .btn-go {

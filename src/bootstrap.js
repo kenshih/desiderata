@@ -13,7 +13,7 @@ $(function(){
 		cfg.disableMask = 511; 
 		cfg.algo = auto.rule.neighbor1;
 
-		player = auto.instance(GRAPH_SIZE, 1, 1, cfg) 
+		player = auto.instance(GRAPH_SIZE, 0, 0, cfg) 
 
 		eco.whiteboard.tryDraw(player);
 	}
@@ -28,7 +28,7 @@ $(function(){
 		//cfg.seed = [[3,5],[15,15]];
 
 		eco.whiteboard.removePlayer(player);
-		player = auto.instance(GRAPH_SIZE, 1, 1, cfg);
+		player = auto.instance(GRAPH_SIZE, 0, 0, cfg);
 		eco.whiteboard.tryDraw(player);
 
 		eco.system.go();
