@@ -9,6 +9,10 @@ A cellular automata playground
 
 In this program an **ecosystem** is an environment that may impose some baseline environmental rules, keeps track of time, and ultimately has final say over what can be rendered. A **strategy** or class of patterns determines a ruleset to be experimented with. A **pattern** is a given instance of a **strategy**, in other words, a particular automaton one can view.
 
+## How to use
+
+Load the contents of src/ on a web server (or local hard drive) and hit ecosystem1.html in any browser except IE -- Life is precious, why waste any of it testing IE?
+
 ## Current State
 
 **desiderata**'s current capabilities include a single ecosystem within which a single class (which I call the neighbor class) of patterns can be viewed.
@@ -19,7 +23,9 @@ This app currently resides in this humble location: http://kenshih.com.s3-websit
 
 ### The Neighbor Pattern
 
-To Be Described.
+To Be Described, more.
+
+I call this an "environmental automata" because its visual effect is one that affects the whole field of the ecosystem, rather than seeming like a cell or creature.
 
  .  | . | .  
  ---|---|--- 

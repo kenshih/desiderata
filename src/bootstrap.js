@@ -5,20 +5,30 @@ var boot = {};
 
 //setup ui elements
 $(function(){
+	var GRAPH_SIZE=30;
 	var player ;
 
 	boot.initializePlayers = function() {
-		player = auto.instance(100, auto.rule.neighbor1 , 1, 1, 511) 
+		var cfg = {};
+		cfg.disableMask = 511; 
+		cfg.algo = auto.rule.neighbor1;
+
+		player = auto.instance(GRAPH_SIZE, 1, 1, cfg) 
+
 		eco.whiteboard.tryDraw(player);
 	}
 
 	boot.changePattern = function() {
 		eco.system.stop();
 
-		var pattern = $(".select").val();
-		console.log(pattern);
+		var cfg = {};
+		cfg.disableMask = $(".select").val(); 
+		cfg.algo = auto.rule.neighbor1;
+		//cfg.algo = auto.rule.neighborParticle;
+		//cfg.seed = [[3,5],[15,15]];
+
 		eco.whiteboard.removePlayer(player);
-		player = auto.instance(100, auto.rule.neighbor1 , 1, 1, pattern);
+		player = auto.instance(GRAPH_SIZE, 1, 1, cfg);
 		eco.whiteboard.tryDraw(player);
 
 		eco.system.go();
@@ -33,7 +43,7 @@ $(function(){
 	//main
 	boot.initializePlayers(); //may move this out
 	boot.initializeRender();
-	boot.initializeSelect();
+	//boot.initializeSelect();
 	eco.system.go();
 	$(".btn-stop").click(eco.system.stop);
 	$(".btn-go").click(eco.system.go);
@@ -45,7 +55,7 @@ boot.initializeSelect = function() {
 	for(var i=511; i >= 0; --i) {
 		html += "<option value='" + i + "'>" + i + "</option>";
 	}
-	$(".select").html(html);
+	$(".select").html(html);	
 };
 
 
@@ -56,4 +66,7 @@ boot.initializeSelect = function() {
 //	 neighor mask
 //challange, make it smoother
 
-//neighbor categories: cool (254, 511), short-lived cool (33, 253, 510), stable (65,512)
+//neighbor categories:
+// cool (251, 254, 510, 511)
+// short-lived cool (33, 253, 510)
+// stable (65,512)

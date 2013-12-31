@@ -11,10 +11,9 @@ body {
 	color: #E5AD24; /* orange-yellow */
 	font-family: Arial, Sans-Serif
 }
-#ecoCanvas { 
-	width: 400;
-	height: 400;
-	border: 1; 
+#eco-canvas { 
+	width: 500;
+	height: 500;
 }
 .text {} 
 

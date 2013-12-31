@@ -4,6 +4,7 @@
 	<title>Ecosystem 1</title>
 	<link rel="stylesheet" type="text/css" href="e1.css"></link>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
 	<script src="util.js"></script>
 	<script src="e1.js"></script>	
 	<script src="a1.js"></script>	
@@ -16,7 +17,7 @@
 <main>
 
 	<section>
-		<canvas id="eco-canvas" width="400" height="400">
+		<canvas id="eco-canvas" width="200" height="200">
 			Your browser does not support the HTML5 canvas tag.
 		</canvas>
 	</section>
@@ -31,13 +32,9 @@
 		<div class="eco-title">
 			<p>Ecosystem : 1</p>
 			<p>Strategy : neighbor (environmental automata)</p>
-			<p>Pattern : 
-				<select class="select">
-				<option value="511">511</option>
-				<option value="0">0</option>
-				<option value="1">1</option>
-				<option value="33">33</option>
-				</select> 
+			<p>Pattern (0-511): 
+				<input class="select" value="511"></input> 
+				<!-- <select class="select"></select>  -->
 			</p>			
 		</div>
 		

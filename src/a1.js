@@ -4,14 +4,14 @@ var auto = {};
 
 auto.A1 = function(){};
 
-auto.instance = function(W, algo, x, y, cfg) {
+auto.instance = function(W,  x, y, cfg) {
 	var i = new auto.A1();
 	i.W = W;
-	i.tickRule = algo;
+	i.tickRule = cfg.algo;
 	i.xCoord = x;
 	i.yCoord = y;
-	i.initGrid(cfg);
 	i.cfg = cfg;
+	i.initGrid();	
 	return i;
 };
 
@@ -31,8 +31,9 @@ auto.rule.simple1 = function() {
 /// end play rules
 
 //color systems
-auto.A1.COLOR1 = '#00878F'
-auto.A1.COLOR2 = '#62AEB2';
+auto.A1.COLOR1 	= '#00878F';
+auto.A1.COLOR2 	= '#62AEB2';
+auto.A1.SEED	= 'seed';
 
 //set play rule
 auto.A1.prototype.tickRule = auto.rule.neighbor1;
@@ -45,7 +46,7 @@ auto.A1.prototype.destroy = function() {
 	}
 }
 
-auto.A1.prototype.initGrid = function(cfg) {
+auto.A1.prototype.initGrid = function() {
 	this.g = [];
 	var G = this.g;
 	var W = this.W;
@@ -55,8 +56,17 @@ auto.A1.prototype.initGrid = function(cfg) {
 		for(var j = 0; j < W; j++) {
 				G[i][j]=auto.A1.COLOR1;
 		}
+	
 	}
-	G[0][1]=auto.A1.COLOR2;
+
+	var cfg = this.cfg;
+	if(cfg && cfg.seed) {
+		for(var i = 0; i < cfg.seed.length; i++) {
+			var tuple = cfg.seed[i];
+			//onsole.log(tuple);
+			G[tuple[0]][tuple[1]]=auto.A1.SEED;			
+		}	
+	} 
 	//console.log("init once per trial");
 }
 auto.A1.prototype.grid = function() { return this.g; }
@@ -72,6 +82,7 @@ auto.A1.prototype.height = function() { return this.W; }
 auto.A1.prototype.handleEvent = function(evt) {
 	switch(evt.type) {
 		case 'tick':
+			//console.log(this.tickRule);
 			this.tickRule(this.cfg);
 			//console.log('player: auto1 tick received');
 			break;

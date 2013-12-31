@@ -15,7 +15,6 @@ var timer;
 
 (function(eco) {
 	var players = []; //maps objects to positions
-	//var moveQueue = []; //priorityQueue of moves
 	var time = 0;
 	var tickRate = 100;
 	
@@ -43,7 +42,7 @@ var timer;
 	//checks whiteboards for draw attempts
 	//and optionally affects the draw event
 	eco.system = {
-		go: function(cfg) {
+		go: function() {
 			stop();
 			timer=setInterval(systemTick, tickRate);			
 		},

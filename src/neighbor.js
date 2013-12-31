@@ -2,9 +2,11 @@
 
 //considers avg of neighbors
 //disableMask allows you to disable consideration of any combination of neighbors
-function determineNeighborAvg(W, G, i, j, disableMask) {
-	var mask = disableMask;
-	if(!disableMask) mask = 511;
+function determineNeighborAvg(W, G, i, j, cfg) {
+	//skip bad input
+	if(i<0 || j<0 || i>=W || j>=W) return null;
+	var mask = cfg.disableMask;
+	//if(typeof disableMask == 'undefined') mask = 511;
 	var colCount = [];
 	if(i>0 && j>0) { //upper left
 		color = G[i-1][j-1];
@@ -53,6 +55,7 @@ function determineNeighborAvg(W, G, i, j, disableMask) {
 var ccCount=0;
 $(function(){
 	auto.rule.neighbor1 = function(cfg) {
+		//console.log(cfg);
 		var G = this.g;
 		var W = this.W;
 		for(var i = 0; i < W; i++) {
@@ -63,5 +66,61 @@ $(function(){
 			}
 		}	
 		//console.log("cfg: " + cfg+  " ccCount: " + ccCount++);
+	};
+
+	auto.rule.neighborParticle = function(cfg) {
+		//console.log(cfg);
+		var G = this.g;
+		var W = this.W;
+		var RADIUS = 3;
+
+		//find key particles
+		var keys = [];
+		//initialize newG as blank
+		var newG = [];
+		for(var i = 0; i < W; i++) {
+			newG[i] = [];
+			for(var j = 0; j < W; j++) {
+				if(G[i][j]==auto.A1.SEED) {
+					keys.push([i,j]);									
+				}
+				newG[i][j] = null;
+			}
+			
+		}
+			
+		//process square around seeds
+		for(var k = 0; k < keys.length; k++) {
+			var iCoord = keys[k][0];
+			var jCoord = keys[k][1];
+			var half = Math.floor(RADIUS/2);
+			for(var i = iCoord - half; i < iCoord + half ; i++) {
+				for(var j = jCoord - half; j < jCoord + half; j++) {
+					var condition =determineNeighborAvg(W, G, i, j, cfg);
+					//console.log(condition);		
+					if(!condition) continue;
+					else if(G[i][j] == auto.A1.SEED) newG[i][j] = auto.A1.SEED;
+					else if(condition == auto.A1.COLOR2) newG[i][j] = auto.A1.COLOR1;
+					else newG[i][j] = auto.A1.COLOR2;
+				}
+			}	
+		
+			// set values of newG in G
+			var seedFound = false;
+			for(var i = 0; i < W; i++) {
+				for(var j = 0; j < W; j++) {
+					if(newG[i][j]) {
+						if(!seedFound && G[i][j] == newG[i][j]) { 
+							G[i][j]   = auto.A1.SEED; 
+							G[iCoord][jCoord] = auto.A1.COLOR2;
+							seedFound = true;
+						} else 
+							G[i][j] = newG[i][j];	
+						//G[i][j] = newG[i][j];	
+					}			
+				}
+			}
+		}
+		
 	};
 });
