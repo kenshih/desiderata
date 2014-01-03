@@ -6,13 +6,14 @@ color scheme: Arduino
 #E5AD24	orange-yellow
 #8C7965 brun
 */
-body {
-	background: #00878F; /* blue */
+.eco {
+	/* background: #00878F; /* blue */
 	color: #E5AD24; /* orange-yellow */
 	font-family: Arial, Sans-Serif;	
 }
 
 .eco-canvas { 
+	background: #00878F;
 	padding-left: 0;
     padding-right: 0;
 	display: block;
@@ -42,7 +43,7 @@ body {
 	background-color: #8C7965 ; /* brun */
 }
 
-select {
+.seed, .strategy {
 	background-color: #00878F; /* blue */
 	color: #E5AD24; /* orange-yellow */
 }

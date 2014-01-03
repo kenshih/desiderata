@@ -22,11 +22,19 @@ $(function(){
 		eco.system.stop();
 
 		var cfg = {};
-		cfg.disableMask = $(".select").val(); 
-		cfg.algo = auto.rule.neighbor1;
-		//cfg.algo = auto.rule.neighborParticle;
-		//cfg.seed = [[3,5],[15,15]];
-
+		cfg.disableMask = $(".seed").val(); 
+		
+		//strategy 1
+		switch ($(".strategy").val()) {
+			case 'particle':
+				cfg.algo = auto.rule.particle;
+				cfg.seed = [[3,5],[15,15]];
+				break;
+			case 'neighbor':
+			default:
+				cfg.algo = auto.rule.neighbor1;					
+		}
+		
 		eco.whiteboard.removePlayer(player);
 		player = auto.instance(GRAPH_SIZE, 0, 0, cfg);
 		eco.whiteboard.tryDraw(player);
@@ -47,7 +55,8 @@ $(function(){
 	eco.system.go();
 	$(".btn-stop").click(eco.system.stop);
 	$(".btn-go").click(eco.system.go);
-	$(".select").change(boot.changePattern);
+	$(".seed").change(boot.changePattern);
+	$(".strategy").change(boot.changePattern);
 });
 
 boot.initializeSelect = function() {
@@ -55,7 +64,7 @@ boot.initializeSelect = function() {
 	for(var i=511; i >= 0; --i) {
 		html += "<option value='" + i + "'>" + i + "</option>";
 	}
-	$(".select").html(html);	
+	$(".seed").html(html);	
 };
 
 

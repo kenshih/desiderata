@@ -72,25 +72,28 @@ $(function(){
 		//console.log(cfg);
 		var G = this.g;
 		var W = this.W;
-		var RADIUS = 3;
+		var RADIUS = 4;
 
 		//find key particles
 		var keys = [];
-		//initialize newG as blank
-		var newG = [];
 		for(var i = 0; i < W; i++) {
-			newG[i] = [];
 			for(var j = 0; j < W; j++) {
 				if(G[i][j]==auto.A1.SEED) {
 					keys.push([i,j]);									
 				}
-				newG[i][j] = null;
-			}
-			
+			}				
 		}
-			
 		//process square around seeds
 		for(var k = 0; k < keys.length; k++) {
+			//initialize newG as what it was before
+			var newG = [];
+			for(var i = 0; i < W; i++) {
+				newG[i] = [];
+				for(var j = 0; j < W; j++) {
+					newG[i][j] = G[i][j]; // auto.A1.COLOR1; //auto.A1.COLOR1; 
+				}				
+			}
+
 			var iCoord = keys[k][0];
 			var jCoord = keys[k][1];
 			var half = Math.floor(RADIUS/2);
@@ -104,20 +107,26 @@ $(function(){
 					else newG[i][j] = auto.A1.COLOR2;
 				}
 			}	
-		
+
 			// set values of newG in G
-			var seedFound = false;
+			newG[iCoord][jCoord] = auto.A1.COLOR2;
+			var nextfound=false;
+			var iFound, jFound; 
 			for(var i = 0; i < W; i++) {
 				for(var j = 0; j < W; j++) {
-					if(newG[i][j]) {
-						if(!seedFound && G[i][j] == newG[i][j]) { 
-							G[i][j]   = auto.A1.SEED; 
-							G[iCoord][jCoord] = auto.A1.COLOR2;
-							seedFound = true;
-						} else 
-							G[i][j] = newG[i][j];	
-						//G[i][j] = newG[i][j];	
-					}			
+					if(!nextfound
+						//&& G[i][j] == newG[i][j]
+						&& newG[i][j] 
+						&& G[i][j] != newG[i][j]
+						&& newG[i][j] == auto.A1.COLOR2
+						) {
+						G[i][j] = auto.A1.SEED;
+						iFound = i; jFound = j;
+						nextfound=true;
+					} else {
+						if(!newG[i][j]) continue;
+						G[i][j] = newG[i][j];								
+					}
 				}
 			}
 		}

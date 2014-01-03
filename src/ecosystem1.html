@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Ecosystem 1</title>
-	<link rel="stylesheet" type="text/css" href="e1.css"></link>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
-	<script src="util.js"></script>
-	<script src="e1.js"></script>	
-	<script src="a1.js"></script>	
-	<script src="neighbor.js"></script>	
-	<script src="render.js"></script>	
-	<script src="bootstrap.js"></script>	
-</head>
-<body>
-
-<main>
+<article class="eco">
+<section>
 	<section class="text">
 		<div class="eco-title">
 			<p>Ecosystem : 1</p>
-			<p>Strategy : neighbor (environmental automata)</p>
+			<p>Strategy : 
+				<select class="strategy">
+					<option value="neighbor" selected="selected">neighbor (environmental automata)</option>
+					<option value="particle">particle</option>
+				</select> 
+			</p>
 			<p>Pattern (0-511): 
-				<input class="select" value="511"></input> 
-				<!-- <select class="select"></select>  -->
+				<input class="seed" value="511"></input> 				
 			</p>
 		</div>
 		<p>	some highlights: 511, 510, 254, 251</p>
@@ -39,8 +28,14 @@
 <aside>
 		I remember thinking how boring automata look on other people's sites. My thinking went something like this: <q>so what? i get it. you think this is interesting because you can generate semi-organic behavior computationally. but the plain fact is, it looks mechanistic. it's not that impressive. it rather more goes to show more of an insensitivity to what is organic and shows a flattening of life, not an appreciation of it.</q> So I understand if that is the reaction. In fact, back in high school, even as I did my science project on fractals, I still had this same feeling. I'm not sure exactly what changed in me. Now I find it pretty fascinating. Perhaps Stephen Wolfram's enthusiasm is catchy.
 </aside>
-		
-	
+</article>
+<script src="desiderata/util.js"></script>
+<script src="desiderata/e1.js"></script>	
+<script src="desiderata/a1.js"></script>	
+<script src="desiderata/neighbor.js"></script>	
+<script src="desiderata/particle.js"></script>	
+<script src="desiderata/render.js"></script>	
+<script src="desiderata/boot.js"></script>	
 
-</body>
-</head>
+
+		
