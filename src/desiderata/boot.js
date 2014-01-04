@@ -28,7 +28,12 @@ $(function(){
 		switch ($(".strategy").val()) {
 			case 'particle':
 				cfg.algo = auto.rule.particle;
-				cfg.seed = [[3,5],[15,15]];
+				var seedArr = [];
+				//initialize env
+				for(var i=0; i < GRAPH_SIZE; i++) 
+					for(var j=0; j < GRAPH_SIZE; j++)
+						if ((i*j + j) % 2 == 1) seedArr.push([i,j]);
+				cfg.seed = seedArr;
 				break;
 			case 'neighbor':
 			default:
