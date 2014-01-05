@@ -31,8 +31,8 @@ auto.rule.simple1 = function() {
 /// end play rules
 
 //color systems
-auto.A1.COLOR1 	= '#00878F';
-auto.A1.COLOR2 	= '#62AEB2';
+auto.A1.COLOR1 	= '#00878F'; // dark
+auto.A1.COLOR2 	= '#62AEB2'; // light
 auto.A1.SEED	= 'seed';
 
 //set play rule

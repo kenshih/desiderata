@@ -35,9 +35,12 @@ $(function(){
 						if ((i*j + j) % 2 == 1) seedArr.push([i,j]);
 				cfg.seed = seedArr;
 				break;
+			case 'dot':			
+				cfg.algo = auto.rule.dot;	
+				break;
 			case 'neighbor':
 			default:
-				cfg.algo = auto.rule.neighbor1;					
+				cfg.algo = auto.rule.neighbor1;	//defined in e1
 		}
 		
 		eco.whiteboard.removePlayer(player);
