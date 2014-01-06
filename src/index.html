@@ -9,7 +9,9 @@
 			$.ajax({
 					url:'ecosystem1.html',
 					success: function(response){
-						$("#body").html(response);						
+						$("#body").html(response);
+						//$("#body").append(response);
+						//$("#body").get(0).insertAdjacentHTML('beforeend', response);						
 					}
 				});
 		});

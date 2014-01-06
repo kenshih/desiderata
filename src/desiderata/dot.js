@@ -1,6 +1,9 @@
+/* dot.js 
 
+265
 
-/* dot.js */
+//currently 256 causes a bug
+*/
 $(function(){
 	var BLACK = auto.A1.COLOR2;
 	var WHITE = auto.A1.COLOR1;
@@ -16,29 +19,14 @@ $(function(){
 		var WIDTH = this.W; //width of grid
 		if(this.start === undefined) this.start = new Dot(WIDTH, 5, 5); //{x: 5, y: 5};
 		if(this.lastMove === undefined) this.lastMove = N;
-		var start = this.start;
-
-		var next;
-		switch(moveRule(start, cfg)) {
-			case N:
-				next = start.north();
-				break;
-			case S:
-				next = start.south();
-				break;
-			case E:
-				next = start.east();
-				break;
-			case W:
-				next = start.west();
-				break;
-			case NO_MOVE:
-				next = start;
-				console.log("no move");
-				return;
-			default:
-				throw Error("volation in auto.rule.dot(). No move rule determined.");
+		if(this.initialized === undefined) {
+			this.initialized = true;
+			//console.log(G);
+		 	initGrid(cfg);
 		}
+		var start = this.start;
+		var next = determineNext(start, next);
+
 		placeDot(next);
 		// if(!colorLeaveRule(start, cfg)) {
 		// 	removeDot(start);
@@ -48,10 +36,45 @@ $(function(){
 
 		// set start for next iteration
 		this.start = next;
-		//console.log(this.start);			
 
 		// end of (main)
 
+		function initGrid(cfg) {
+			console.log("initializing grid, before");
+			//console.log(G);
+			for(var i=0; i < WIDTH; i++) {
+				for(var j=0; j < WIDTH; j++) {
+					if ((i*j + j) % 2 == 1) {
+						G[i][j] = BLACK;
+					}
+				}
+			}
+		}
+
+		function determineNext(start, next) {
+			var next;
+			switch(moveRule(start, cfg)) {
+				case N:
+					next = start.north();
+					break;
+				case S:
+					next = start.south();
+					break;
+				case E:
+					next = start.east();
+					break;
+				case W:
+					next = start.west();
+					break;
+				case NO_MOVE:
+					next = start;
+					console.log("no move");
+					return;
+				default:
+					throw Error("volation in auto.rule.dot(). No move rule determined.");
+			}
+			return next;
+		}
 		
 
 		function leavingInfluence(start, cfg) {
