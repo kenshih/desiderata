@@ -36,7 +36,7 @@ $(function(){
 				cfg.seed = seedArr;
 				break;
 			case 'dot':			
-				cfg.algo = auto.rule.dot;	
+				cfg.algo = auto.rule.dot;
 				break;
 			case 'neighbor':
 			default:
